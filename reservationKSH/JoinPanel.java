@@ -12,9 +12,31 @@ public class JoinPanel extends JPanel{
     private Image backgroundImage;
     private ImageIcon joinEnteredIcon = new ImageIcon("images/btn_join_entered.png");
     private ImageIcon backEnteredIcon = new ImageIcon("images/btn_back_entered.png");
+
+    public JTextField id;
+    public JPasswordField pw;
+    public JTextField name;
+    public JTextField ngrade;
+    public JTextField nclass;
+
     public JoinPanel(LoginPanel loginPanel){
         setLayout(null); // 널 레이아웃 사용
         backgroundImage = new ImageIcon("images/join.png").getImage(); // 배경 이미지 설정
+
+        id = new JTextField();
+        id.setBounds(420,205,200,30);
+        id.setOpaque(false);
+        id.setBorder(null);
+        id.setForeground(Color.WHITE);
+        Font font = new Font("SansSerif", Font.PLAIN, 30);
+        id.setFont(font);
+
+        pw = new JPasswordField(20);
+        pw.setBounds(420,285,200,30);
+        pw.setOpaque(false);
+        pw.setBorder(null);
+        pw.setForeground(Color.WHITE);
+        pw.setFont(font);
 
         // 버튼 설정
         ImageIcon joinIcon = new ImageIcon("images/btn_join.png");
@@ -67,6 +89,8 @@ public class JoinPanel extends JPanel{
 
         // 회원가입 버튼에 대한 이벤트 리스너 설정
 
+        add(id);
+        add(pw);
         add(joinButton);
         add(backButton);
     }

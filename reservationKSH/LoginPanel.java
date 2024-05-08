@@ -29,6 +29,9 @@ public class LoginPanel extends JFrame{
 
     public Container cPane;
 
+    public JTextField id;
+    public JPasswordField pw;
+
     public void switchPanel(JPanel panel){
         getContentPane().removeAll(); // 기존 패널 제거
         getContentPane().add(panel); // 새로운 패널 추가
@@ -52,6 +55,21 @@ public class LoginPanel extends JFrame{
         setIconImage(img);
 
         loginpanel = new drawback();
+
+        id = new JTextField();
+        id.setBounds(420,325,200,30);
+        id.setOpaque(false);
+        id.setBorder(null);
+        id.setForeground(Color.WHITE);
+        Font font = new Font("SansSerif", Font.PLAIN, 30);
+        id.setFont(font);
+
+        pw = new JPasswordField(20);
+        pw.setBounds(420,395,200,30);
+        pw.setOpaque(false);
+        pw.setBorder(null);
+        pw.setForeground(Color.WHITE);
+        pw.setFont(font);
 
         loginButton.setBounds(700,310,130,129);
         loginButton.setBorderPainted(false);
@@ -148,6 +166,8 @@ public class LoginPanel extends JFrame{
         loginpanel.add(loginButton);
         loginpanel.add(joinButton);
         loginpanel.add(closeButton);
+        loginpanel.add(id);
+        loginpanel.add(pw);
         setVisible(true);
     }
     class drawback extends JPanel{
