@@ -47,6 +47,7 @@ public class JoinPanel extends JPanel{
         mid.setForeground(Color.WHITE);
         Font font = new Font("SansSerif", Font.PLAIN, 30);
         mid.setFont(font);
+        mid.setDocument(new JTextFieldLimit(10));
 
         mpw = new JPasswordField(20);
         mpw.setBounds(420,265,200,30);
@@ -68,23 +69,23 @@ public class JoinPanel extends JPanel{
         name.setBorder(null);
         name.setForeground(Color.WHITE);
         name.setFont(font);
-        name.setDocument(new JTextFieldLimit(10));
-
-        nclass = new JTextField();
-        nclass.setBounds(420,460,200,30);
-        nclass.setOpaque(false);
-        nclass.setBorder(null);
-        nclass.setForeground(Color.WHITE);
-        nclass.setFont(font);
-        nclass.setDocument(new JTextFieldLimit(2, "0123456789"));
+        name.setDocument(new JTextFieldLimit(7));
 
         ngrade = new JTextField();
-        ngrade.setBounds(420,525,200,30);
+        ngrade.setBounds(420,460,200,30);
         ngrade.setOpaque(false);
         ngrade.setBorder(null);
         ngrade.setForeground(Color.WHITE);
         ngrade.setFont(font);
         ngrade.setDocument(new JTextFieldLimit(1, "123"));
+
+        nclass = new JTextField();
+        nclass.setBounds(420,525,200,30);
+        nclass.setOpaque(false);
+        nclass.setBorder(null);
+        nclass.setForeground(Color.WHITE);
+        nclass.setFont(font);
+        nclass.setDocument(new JTextFieldLimit(2, "0123456789"));
 
         // 버튼 설정
         ImageIcon joinIcon = new ImageIcon("images/btn_join.png");
@@ -109,6 +110,7 @@ public class JoinPanel extends JPanel{
 
         // 뒤로가기 버튼에 대한 이벤트 리스너 설정
         backButton.addActionListener(e-> {
+            loginPanel.resetValues();
             loginPanel.switchPanel(loginPanel.getLoginContentPanel());
         });
 
@@ -167,6 +169,7 @@ public class JoinPanel extends JPanel{
 
             @Override
             public void mouseClicked(MouseEvent e){
+                loginPanel.resetInfo();
                 savedpw = mpw.getPassword();
                 savedpwd = mpwd.getPassword();
                 if(!Arrays.equals(savedpw, savedpwd)){

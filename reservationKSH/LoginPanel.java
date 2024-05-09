@@ -32,6 +32,23 @@ public class LoginPanel extends JFrame{
     public JTextField id;
     public JPasswordField pw;
 
+    public static String username;
+    public static String userid;
+    public static int userres;
+
+    public static String userpw;
+
+    public void resetValues(){
+        id.setText("");
+        pw.setText("");
+    }
+    public void resetInfo(){
+        username = "";
+        userid = "";
+        userres = 0;
+        userpw = "";
+    }
+
     public void switchPanel(JPanel panel){
         getContentPane().removeAll(); // 기존 패널 제거
         getContentPane().add(panel); // 새로운 패널 추가
@@ -63,6 +80,7 @@ public class LoginPanel extends JFrame{
         id.setForeground(Color.WHITE);
         Font font = new Font("SansSerif", Font.PLAIN, 30);
         id.setFont(font);
+        id.setDocument(new JTextFieldLimit(10));
 
         pw = new JPasswordField(20);
         pw.setBounds(420,395,200,30);
