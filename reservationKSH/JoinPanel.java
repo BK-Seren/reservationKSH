@@ -27,11 +27,16 @@ public class JoinPanel extends JPanel{
     public JTextField ngrade;
     public JTextField nclass;
 
+    public int chenum = 0;
+
 
     public char[] savedpw;
     public char[] savedpwd;
 
     private boolean idCheck(String id){
+        if(LoginPanel.userid.equals(id)){
+            return true;
+        }
         return false;
     }
 
@@ -96,7 +101,7 @@ public class JoinPanel extends JPanel{
 
         // 버튼 위치 및 크기 설정
         joinButton.setBounds(385,600,joinIcon.getIconWidth(), joinIcon.getIconHeight());
-        idButton.setBounds(600,205,idIcon.getIconWidth(), idIcon.getIconHeight());
+        idButton.setBounds(700,190,idIcon.getIconWidth(), idIcon.getIconHeight());
         backButton.setBounds(40,40,backIcon.getIconWidth(), backIcon.getIconHeight());
 
         // 버튼 배경 및 테두리 설정 해제
@@ -134,7 +139,8 @@ public class JoinPanel extends JPanel{
                 JOptionPane.showMessageDialog(null, "이미 사용 중인 아이디입니다.", "경고", JOptionPane.WARNING_MESSAGE);
                 return;
             }else{
-                loginPanel.userid = mid.getText();
+                JOptionPane.showMessageDialog(JoinPanel.this, "사용 가능한 아이디입니다.");
+                chenum = 1;
             }
 
 
@@ -171,6 +177,14 @@ public class JoinPanel extends JPanel{
             @Override
             public void mousePressed(MouseEvent e){
                 loginPanel.resetInfo();
+                if(chenum == 1){
+                    loginPanel.userid = mid.getText();
+                    chenum = 0;
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.", "경고", JOptionPane.WARNING_MESSAGE );
+                    return;
+                }
                 loginPanel.username = name.getText();
                 savedpw = mpw.getPassword();
                 savedpwd = mpwd.getPassword();
@@ -199,6 +213,7 @@ public class JoinPanel extends JPanel{
         add(name);
         add(ngrade);
         add(nclass);
+        add(idButton);
         add(joinButton);
         add(backButton);
     }

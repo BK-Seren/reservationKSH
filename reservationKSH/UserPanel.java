@@ -79,10 +79,10 @@ public class UserPanel extends JPanel{
         g.setColor(Color.WHITE);
         g.setFont(new Font("SansSerif", Font.PLAIN, 34)); // 폰트 설정
         g.drawString(LoginPanel.username, 520, 360); // 텍스트 그리기
-        if(LoginPanel.userres == 1){
+        if(LoginPanel.userres != 0){
             g.drawString(String.valueOf(LoginPanel.userres), 570, 460);
-        }
-        else{
+
+        } else{
             g.drawString("-", 570, 455);
         }
 
