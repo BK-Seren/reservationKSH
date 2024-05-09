@@ -35,8 +35,17 @@ public class LoginPanel extends JFrame{
     public static String username;
     public static String userid;
     public static int userres;
-
+    public String checkpw;
+    public String checkid;
     public static String userpw;
+
+    public void chartoString(){
+
+        char[] chpw = pw.getPassword();
+        for(int i = 0; i<chpw.length; i++){
+            checkpw += chpw[i];
+        }
+    }
 
     public void resetValues(){
         id.setText("");
@@ -110,12 +119,25 @@ public class LoginPanel extends JFrame{
 
             @Override
             public void mousePressed(MouseEvent e) {
-                ResPanel resPanel = new ResPanel(LoginPanel.this);
+                checkid = id.getText();
+                if(userid.equals(checkid)){
+                    chartoString();
+                    if(userpw.equals(checkpw)){
+                        ResPanel resPanel = new ResPanel(LoginPanel.this);
 
-                getContentPane().removeAll();
-                getContentPane().add(resPanel);
-                getContentPane().revalidate();
-                getContentPane().repaint();
+                        getContentPane().removeAll();
+                        getContentPane().add(resPanel);
+                        getContentPane().revalidate();
+                        getContentPane().repaint();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(LoginPanel.this, "비밀번호가 잘못되었습니다.");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(LoginPanel.this, "아이디나 비밀번호가 잘못되었거나 없는 회원 정보입니다.");
+                }
+
             }
 
         });

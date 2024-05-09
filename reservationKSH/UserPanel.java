@@ -19,7 +19,7 @@ public class UserPanel extends JPanel{
         JButton backButton = new JButton(backIcon);
 
         // 버튼 위치 및 크기 설정
-        logoutButton.setBounds(90,140,logoutIcon.getIconWidth(), logoutIcon.getIconHeight());
+        logoutButton.setBounds(420,500,logoutIcon.getIconWidth(), logoutIcon.getIconHeight());
         backButton.setBounds(30,30,backIcon.getIconWidth(), backIcon.getIconHeight());
 
         // 버튼 배경 및 테두리 설정 해제
@@ -35,7 +35,7 @@ public class UserPanel extends JPanel{
         });
 
         logoutButton.addActionListener(e-> {
-
+            loginPanel.resetValues();
             loginPanel.switchPanel(loginPanel.getLoginContentPanel());
         });
 
@@ -75,6 +75,17 @@ public class UserPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("SansSerif", Font.PLAIN, 34)); // 폰트 설정
+        g.drawString(LoginPanel.username, 520, 360); // 텍스트 그리기
+        if(LoginPanel.userres == 1){
+            g.drawString(String.valueOf(LoginPanel.userres), 570, 460);
+        }
+        else{
+            g.drawString("-", 570, 455);
+        }
+
     }
 
 }

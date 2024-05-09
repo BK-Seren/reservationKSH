@@ -7,7 +7,6 @@ import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.*;
 import java.util.Arrays;
 
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
@@ -134,6 +133,8 @@ public class JoinPanel extends JPanel{
             if(isDuplicated){
                 JOptionPane.showMessageDialog(null, "이미 사용 중인 아이디입니다.", "경고", JOptionPane.WARNING_MESSAGE);
                 return;
+            }else{
+                loginPanel.userid = mid.getText();
             }
 
 
@@ -168,8 +169,9 @@ public class JoinPanel extends JPanel{
 
 
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mousePressed(MouseEvent e){
                 loginPanel.resetInfo();
+                loginPanel.username = name.getText();
                 savedpw = mpw.getPassword();
                 savedpwd = mpwd.getPassword();
                 if(!Arrays.equals(savedpw, savedpwd)){
@@ -180,6 +182,12 @@ public class JoinPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "비밀번호는 20자 이내여야 합니다.", "경고", WARNING_MESSAGE);
                     return;
                 }
+                for(int i = 0; i<savedpw.length; i++){
+                    loginPanel.userpw += savedpw[i];
+                }
+                JOptionPane.showMessageDialog(JoinPanel.this, "가입완료!");
+                loginPanel.resetValues();
+                loginPanel.switchPanel(loginPanel.getLoginContentPanel());
             }
         });
 
